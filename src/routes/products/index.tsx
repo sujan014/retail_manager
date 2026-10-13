@@ -1,4 +1,4 @@
-import type { ProductType } from '#/lib/types/product.type';
+import type { CreateProductInput, ProductType } from '#/lib/types/product.type';
 import { getAllProductsFn } from '#/server/products/products.function';
 import { createFileRoute } from '@tanstack/react-router';
 
@@ -15,7 +15,30 @@ function RouteAllProductsComponent() {
 
   const handleSubmit = async (event: React.SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // do nothing for now
+
+    const formData = new FormData(event.currentTarget);
+
+    const productData: CreateProductInput = {
+      name: formData.get('name') as string,
+      description: formData.get('description') as string,
+      brand: formData.get('brand') as string,
+      price: Number(formData.get('price') as string) || 0,
+      quantity: Number(formData.get('quantity') as string) || 0,
+      imageUrl: 'blank URL', // for now make it empty
+      spec: {
+        length: Number(formData.get('length') as string) || 0,
+        width: Number(formData.get('width') as string) || 0,
+        height: Number(formData.get('height') as string) || 0,
+        unit: formData.get('unit') as string,
+      },
+      stock: {
+        availability: formData.get('availability') as string,
+        shipping_info: formData.get('shipping_info') as string,
+        warranty_info: formData.get('warranty_info') as string,
+      },
+    };
+    console.log('Product Data');
+    console.log(productData);
   };
 
   return (
@@ -164,15 +187,15 @@ function RouteAllProductsComponent() {
           />
         </div>
         <div className="w-[90vw] my-2 md:w-[300px] flex">
-          <label htmlFor="shippping_info" className="w-1/3">
+          <label htmlFor="shipping_info" className="w-1/3">
             Shippping Info
           </label>
           <input
             className="w-2/3 border p-1 rounded-md bg-gray-950"
             type="string"
-            id="shippping_info"
-            name="shippping_info"
-            placeholder="Product shippping info"
+            id="shipping_info"
+            name="shipping_info"
+            placeholder="Product shipping info"
             required
           />
         </div>
