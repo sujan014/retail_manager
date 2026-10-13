@@ -1,0 +1,30 @@
+// use prisma-8
+model User {
+  id        Int               @id @default(autoincrement())
+  email     String            @unique
+  username  String
+  role      String
+  name      String
+  password  String
+  createdAt TimestamptzString @default(now())
+  //updatedAt temporal.updatedAtString()
+}
+
+model Product {
+  pid           Int               @id @default(autoincrement())
+  name          String
+  description   String
+  brand         String
+  price         Float
+  quantity      Int
+  imageUrl      String
+  length        Int
+  width         Int
+  height        Int
+  unit          String
+  availability  String
+  shipping_info String
+  warranty_info String
+  createdAt     TimestamptzString @default(now())
+  //updatedAt     temporal.updatedAtString()
+}
