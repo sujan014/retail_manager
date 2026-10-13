@@ -43,8 +43,8 @@ function RouteUserComponent() {
 
     const zodValidate = UserSchema.safeParse(userdata);
     if (!zodValidate.success) {
-      console.log('zod error');
-      console.log(zodValidate.error.issues);
+      //console.log('zod error');
+      //console.log(zodValidate.error.issues);
       let errmsgs: any = {
         email: '',
         username: '',

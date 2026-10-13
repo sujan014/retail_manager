@@ -9,6 +9,6 @@ export async function getUsers() {
 }
 
 export async function createUser(data: CreateUserInput) {
-  console.log('createUser function:', data);
+  //console.log('createUser function:', data);
   return await db.orm.public.User.create(data);
 }
